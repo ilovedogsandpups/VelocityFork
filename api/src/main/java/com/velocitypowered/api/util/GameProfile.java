@@ -20,10 +20,16 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class GameProfile implements PlayerHeadObjectContents.SkinSource {
 
-  private final UUID id;
+  private UUID id; // MAX
   private final String undashedId;
   private final String name;
   private final List<Property> properties;
+
+  // START MAX
+  public void setId(UUID uuid) {
+    this.id = uuid;
+  }
+  // END MAX
 
   /**
    * Creates a new Mojang game profile.

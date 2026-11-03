@@ -30,6 +30,7 @@ import com.velocitypowered.api.event.connection.PreLoginEvent.PreLoginComponentR
 import com.velocitypowered.api.network.ProtocolVersion;
 import com.velocitypowered.api.proxy.crypto.IdentifiedKey;
 import com.velocitypowered.api.util.GameProfile;
+import com.velocitypowered.api.util.UuidUtils;
 import com.velocitypowered.proxy.VelocityServer;
 import com.velocitypowered.proxy.connection.MinecraftConnection;
 import com.velocitypowered.proxy.connection.MinecraftSessionHandler;
@@ -246,6 +247,9 @@ public class InitialLoginSessionHandler implements MinecraftSessionHandler {
                       Component.translatable("multiplayer.disconnect.invalid_public_key"));
                 }
               }
+              // START MAX
+              profile.setId(UuidUtils.generateOfflinePlayerUuid(login.getUsername()));
+              // END MAX
               // All went well, initialize the session.
               mcConnection.setActiveSessionHandler(StateRegistry.LOGIN,
                   new AuthSessionHandler(server, inbound, profile, true, serverId));
